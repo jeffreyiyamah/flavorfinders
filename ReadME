@@ -1,0 +1,117 @@
+Create:
+
+    Merchant Menu
+    Main Page, where you can search location (Done)
+    Reccomend Based of of initial location and favorite location
+    Searchbar (Done)
+    Preferences 
+    Add Friends
+        Mutual Friend Adds
+    Add OAuth
+
+
+
+Description:
+
+    On its landing page, flavorfinders will feature, a login, register, langauge and partner page. There are two different portals and there will be two seperate databases: #1 Client Information and #2 Partner Information. On Sign-up the data will be sent to our database, which is crucial to connecting our clients with friends with similar tastes, and also restaraunts that fit their preferences (included but not limited to: Location (slider radius), Budget: $, $$, $$$, Cuisine and Menu: Italian, Chinese, American etc, Dietary Needs: Gluten Free, Vegetarian, Vegan, Reviews: From Yelp API). The way this matching system works is that, the Partner on the other end has to also fill out these preferences on their end and the client has a chance to preview their menu. 
+    
+    On the Client side: 
+
+        On register:
+
+        If this is the first time logging in (if you register), you will first be met with an email asking you to verify your email. After verifing you will toggle through modals adding your preference and finally your "favorite restuarant -  with address".
+        This address will give the computer some input to start the reccommendation system, essentially becoming its "pivot-point". The plan is to use some framework, collaborative filtering from Python and also the Neo4J graph database, that connects clients to restaurants and clients to other clients.
+
+
+
+        After Login: 
+        After Login you are met with a map. On the top right you can use the map for your needs, while on the top left: there is a purple/blue gradient user icon. On click you are met with three icons. There will also be a few markers, including #1 your favorite restaurant and 4 other restaurants that have been reccomended to you
+
+            Profile:
+                On Profile, you can add and change profie picture, verify email address and change username, and see how many friends you have accummulated ex (@jeffreyiyamah, 7 friends).
+                There is no following system, the moment someone accepts your friend request you two are both friends with each other
+
+            Friends:
+                On the friends tab, you are reccommended new friends to add. You can accept friend requests
+
+
+            Stores:
+                A chance for you to see cards of restaurants that fill your preferences:
+                Header <Restuarant Name>
+                Image: <Image of Restaurant, no larger than 150x150>
+                Address (Subtitle): <Address>
+                Cuisine Type: <Cuisine Type>
+                Dietary Needs: <Types of Special Dietary Needs>
+                Description: <Description> includes a link with menu
+                <!-- Rating <From Yelp API> Dont know if it's neccessary -->
+                Distance: <Distance from current location in miles>
+                Friends: <If a mutual friend likes that store their circular profile pic right below it's distance>
+                Phone (Subtitle): <Phone>
+
+                They have a store page that shows similar or even the same stores nearby
+
+                Cards will be added until distance hits a max of 50 miles.
+
+
+            Settings:
+                You can manage preferences:
+                    Budget
+                    Location Radius
+                    Allergies
+                    Cuisine Preference
+                    Changing Favorite Location
+
+
+            Logout: 
+                Self-explanatory
+    
+On the Partner Side:
+        Store Input:
+            Address
+            City
+            Zip: Alphanumeric field
+            State
+            Country
+            Description: Character Field
+        Menu: Can be drag and drop (files accepted, pdf, doc, word)
+        Dietary Needs: <Vegan, Vegeatarian, Gluten Free, Soy-Free, Nut-Free, Pescatarian>
+        Budget: $, $$, $$$
+    The Partners have no profile page.
+    Stores: 
+    They have a store page that shows similar or even the same stores nearby
+
+Logout:
+
+
+
+
+To-do:
+
+
+Backend: 
+
+Link static pages to backend (Django). Use Neo4J Database and add data into it.
+
+User Authentication: Login Pages and Verifying Users and adding these respective users into the database, same with registration.
+
+Adding a Follower Count:
+Adding Follower/Friend Suggestion
+Creating API
+Creating the Store Section, for both server and client side
+Add Settings
+Changing Language for Website
+
+After clicking on the users Icon. If there are no friends avaliable, I want to have a list of suggestions add people given the users in database
+
+Data storage after login.
+
+
+Favorite Restaurant Marker Saving after Registration:
+Marker Saving after Login:
+
+Be able Add Profile Picture from Drag and Drop or take a picture, and username to User Suggested:
+
+Add PP to Database
+
+Front-end:
+Create the Front end for Store, Friends, Settings, and Profile

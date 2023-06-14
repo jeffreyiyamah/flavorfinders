@@ -1,0 +1,69 @@
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0;  width: 100%; }
+.settings-icon {
+position: absolute;
+top: 10px;
+left: 10px;
+font-size: 30px;
+z-index: 1;
+cursor: pointer;
+background: -webkit-linear-gradient(#ff0090, #1908d3);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.settings-icon :hover {
+
+background: -webkit-linear-gradient( #1908d3, #ff0090);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+#popupContainer {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 9999;
+}
+#popupContent {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+padding: 20px;
+text-align: center;
+
+}
+.modal-content h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+}
+ul{
+    font-size: 30px;
+    list-style: none;
+}
+li{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    
+    margin-bottom: 200px;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+.modal-text{
+    margin-right: 100px;
+
+}
+.modal-content-wrapper {
+    display: flex;
+    
+    justify-content: space-between;
+  }
+  

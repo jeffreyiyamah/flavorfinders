@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/ca36ce4546.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'partners/css/style-merchant.css' %}" />
+    <title>FlavorFinders for Partners</title>
+</head>
+<body>
+    <div class="bigwrapper">
+        <header>
+            <div class="container">
+                <span>
+                    <a href="{% url 'homepage' %}"><i class="fa-solid fa-mortar-pestle  mp"></i></a>
+                    <p class="flavorfinders"> FlavorFinders for Partners</p>
+                </span>
+               
+                
+                <div class="links">
+                    <ul>
+                    <li><a href="" class="btn"> </a></li>
+                    
+                  
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="overlay-image">
+        <img src="{% static 'home/images/annie-spratt-MChSQHxGZrQ-unsplash.jpg' %}" alt="">
+        <div class="login-box">
+            <h1>Get Started</h1>
+           <a href="{% url 'partner_login' %}"> <p>Already have an account?</p></a>
+            <form action="">
+                <label for="fname">First Name:</label> <br>
+                <input type="text" name="fname" id="" placeholder="   John "> </input><br>
+                <label for="fname">Last Name:</label> <br>
+                <input type="text" name="fname" id="" placeholder="   Doe"> </input><br>
+                <label for="fname">Email:</label> <br>
+                <input type="email" name="email" id="email" placeholder="  johndoe@mail.com"> </input><br>
+                <label for="fname">Store Name:</label> <br>
+                <input type="text" name="fname" id="" placeholder=" Johns Pizzeria "> </input><br>
+                <label for="fname">Store Address:</label> <br>
+                <input type="text" name="fname" id="" placeholder=" 123 Main Street "> </input><br>
+                <label for="fname">City:</label> <br>
+                <input type="text" name="fname" id="" placeholder=" New York City"> </input><br>
+                <label for="fname">State:</label><br>
+                <select id="state-select">
+                    <option value="">Select a state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                  <br>
+                  <br>
+                <label for="fname">Zip Code:</label> <br>
+                <input type="text" name="fname" id="" placeholder=" 12345"> </input><br>
+                <label for="country">Country:</label><br>
+                <select id="country-select">
+                    <option value="">Select a country</option>
+                    <option value="AF">Afghanistan</option>
+                    <option value="AR">Argentina</option>
+                    <option value="AU">Australia</option>
+                    <option value="BD">Bangladesh</option>
+                    <option value="BR">Brazil</option>
+                    <option value="CA">Canada</option>
+                    <option value="CN">China</option>
+                    <option value="CO">Colombia</option>
+                    <option value="EG">Egypt</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                    <option value="IN">India</option>
+                    <option value="ID">Indonesia</option>
+                    <option value="IT">Italy</option>
+                    <option value="JP">Japan</option>
+                    <option value="KE">Kenya</option>
+                    <option value="KR">South Korea</option>
+                    <option value="MX">Mexico</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="PK">Pakistan</option>
+                    <option value="PH">Philippines</option>
+                    <option value="RU">Russia</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="ES">Spain</option>
+                    <option value="SE">Sweden</option>
+                    <option value="CH">Switzerland</option>
+                    <option value="TR">Turkey</option>
+                    <option value="AE">United Arab Emirates</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="US">United States</option>
+                    <!-- Add more countries here -->
+                  </select>
+                  
+                  <br>
+                  <br>
+                <label for="fname">Food Style:</label> <br>
+                <select name="dropdown" id="" >
+                    <option value="American">American</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Korean">Korean</option>
+                    <option value="Chinese">Chinese</option>
+                </select>
+                <br>
+                <br>
+                <button class="b">Submit</button>
+            </form>
+        </div>
+    </div>
+  
+    </div>
+    <footer> 
+    </footer>
+    <script src="{static 'partners/js/script.js' %}"></script>
+</body>
+
+</html>

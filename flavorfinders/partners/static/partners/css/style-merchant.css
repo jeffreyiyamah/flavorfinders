@@ -35,7 +35,7 @@ ul{
 li{
     margin-left: 10px;
     cursor: pointer;
-    
+    margin-bottom: 50px;
 }
 
 .links a,.links button{
@@ -100,10 +100,10 @@ footer p{
     bottom: 0;
     padding: 20px;
     width: 500px;
-    height: 890px;
+    height: 1250px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
-    border: 15px #f30000;
+    border: 15px
 }
 input{
     margin-bottom: 20px;

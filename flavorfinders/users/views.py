@@ -24,16 +24,10 @@ def registerUser(request):
                 login(request, user)
 
                 subject = 'Welcome to Flavor Finders'
-                message = f'Hi, {{user.username}} weare glad you can join us. Hope you enjoy our platform and stay for a while'
+                message = f'Hi, {{username}} we are glad you can join us. Hope you enjoy our platform and stay for a while'
 
                 try:
-                    send_mail(
-                        subject,
-                        message,
-                        settings.EMAIL_HOST_USER,
-                        [user.email],
-                        fail_silently=False
-                    )
+                    send_mail(subject,message,settings.EMAIL_HOST_USER,[user.email],fail_silently=False)
                 except Exception as e:
                     print(f"Error sending email: {e}")
 

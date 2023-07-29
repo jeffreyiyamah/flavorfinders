@@ -37,61 +37,151 @@
 <!-- Modal -->
 <!-- Full screen modal -->
 
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-        <div class="modal-header">
-          {% if user.is_authenticated %}
-          <h1 class="modal-title" id="staticBackdropLabel">Welcome {{user.get_username}} !</h1>
-          {% else %}
-          <h1 class="modal-title" id="staticBackdropLabel">Settings</h1>
-          {% endif %}
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div>
-            <p>AAA</p>
-          </div>
-          <div class="modal-content-wrapper">
-            <div class="modal-list">
-              <ul>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+       <!-- Left Side of Modal, Fixed to those tabs..for now -->
+          <div class="left">
+            <div class="profile">
+              <br>
+              <img src="/project-2/images/default-user-icon-8.jpg" alt="" width="128px" height="128px">
+              <br>
+              <p>Username</p>
+              <label for="file-input" class="upload-label">
+                <button class="edit-profile">
+                  <span id="edit-profile">Edit Profile Picture <i class="fa-solid fa-pen-to-square"></i>
+                     
+                  </span>
+                  
+                 </button> 
+              </label>
+              <input type="file" id="file-input" accept="*" style="display: none;">
+              
+              <label for="#file-input">
+                   
+              </label>
              
-                <a href="">
-                  <li>
-                    <i class="fa-solid fa-user"></i> Profile
-                  </li>
-                </a>
-                <a href="">
-                  <li>
-                    <i class="fa-solid fa-basket-shopping"></i></i> Stores
-                  </li>
-                </a>
-                <a href="">
-                  <li>
-                    <i class="fa-solid fa-gear"></i> Preferences
-                  </li>
-                  <li>
-                    
-                    <a href="{% url 'logout' %}" id="submit-button"><input type="submit" value="Logout"></a>
-                  </li>
-                </a>
-              </ul>
+                
+             <br>
+              <br>
               
             </div>
-            <div class="container">
+            <div>
+              <ul>
+                <li id="profileTab" onclick="toggleTab('right')">Profile</li>
+                <li>Stores</li>
+                <li id="preferencesTab" onclick="toggleTab('preferences')">Preferences</li>
+                <li class="main-menu" data-bs-toggle="modal"  data-bs-target="#staticBackdrop"> Main Menu</i></li>
+                <li>Logout</li>
+              </ul>
+            </div>
+           
+          </div>
+          <!-- End of Left -->
+           <!-- Right Side of the Modal, always changing depending on the tab selected. Right side u see when loading into page-->
+           <div class="right">
+            <h1>Account Settings</h1>
+            <div class="right-text">
+              <label for="Name">Username:
+                <input type="text" id="username" name="username" minlength="3" placeholder="johndoe">
+              </label>
+              <label for="Name">First Name:
+                <input type="text" id="first-name" name="first-name" minlength="3" placeholder="John">
+              </label>
+              <label for="Name">Last Name:
+                <input type="text" id="last-name" name="last-name" minlength="2" placeholder="Doe" >
+              </label>
+              <label for="Name">Email Address:
+                <input type="text" id="email-address" name="email-address" minlength="5" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="johndoe@mail.com">
+              </label>
+            </div>
+            <button type="button" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-danger">Delete Account <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
+          </div>
+          <!-- End of Right -->
+          <div class="preferences" >
+            <h1>Preferences</h1>
+            <div class="right-text">
+              <label for="dog-names">Cuisine Style:
+                <select name="dog-names" id="dog-names"> 
+                  <option value="rigatoni">American</option> 
+                  <option value="dave">Korean</option> 
+                  <option value="pumpernickel">Italian</option> 
+                  <option value="reeses">Mexican</option> 
+              </select>
+              </label> 
+              <label for="dog-names">Dietary Prefererance:
+                <select name="dog-names" id="dog-names"> 
+                  <option value="rigatoni">Vegan</option> 
+                  <option value="dave">Vegetarian</option> 
+                  <option value="pumpernickel">Halal</option> 
+                  <option value="reeses">Gluten Free</option> 
+              </select>
+              </label> 
+              <label for="Name">Current Zip Code:
+                <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="12345">
+              </label>
+              <label for="Name">Location Radius :
+                <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="Will be an eventual slider in miles here">
+              </label>
               
+              
+            </div>
+            <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+            <!-- End of Preferences -->
+
+
+
+      <!-- <div class="modal-header">
+        {% if user.is_authenticated %}
+        <h1 class="modal-title" id="staticBackdropLabel">Welcome {{user.get_username}} !</h1>
+        {% else %}
+        <h1 class="modal-title" id="staticBackdropLabel">Settings</h1>
+        {% endif %}
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-content-wrapper">
+          <div class="modal-list">
+            <ul>
+              <a href="">
+                <li>
+                  <i class="fa-solid fa-users"></i> Friends
+                </li>
+              </a>
+              <a href="">
+                <li>
+                  <i class="fa-solid fa-user"></i> Profile
+                </li>
+              </a>
+              <a href="">
+                <li>
+                  <i class="fa-solid fa-gear"></i> Preferences
+                </li>
+                <li>
+                  
+                  <a href="{% url 'logout' %}"><input type="submit" value="Logout"></a>
+                </li>
+              </a>
+            </ul>
+            
           </div>
-          </div>
-          
-          
-          
+          <div class="container">
+            <p>A</p>
         </div>
-        <div>
-  
         </div>
+       
+        
+        
+      </div>
+      End of Modal Body -->
+      <div>
+
       </div>
     </div>
   </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>  
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

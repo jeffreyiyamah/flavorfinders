@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>FlavorFinders Main Page</title>
+<title>Flavor Finders</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-
 </head>
 <body>
 <!-- Load the `mapbox-gl-geocoder` plugin. -->
@@ -23,7 +22,62 @@
 
 
 <div id="map"></div>
-<div class="settings-icon" id="settingsIcon">
+
+<div class="settings-icon" id="settingsIcon" data-bs-toggle="modal" data-bs-target="#settingsDashboard">
+  <i class="fa-solid fa-users-rectangle"></i>
+</div>
+
+
+
+<div class="modal fade" id="settingsDashboard" tabindex="-1" aria-labelledby="settingsDashboardLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+          <div class="modal-body d-flex p-0">
+              <div class="left-section p-4 text-white">
+                  <div class="profile text-center mb-4">
+                    <img src="{% static 'dashboard/images/default-user-icon-8.jpg' %}" alt="Profile Picture" class="profile-pic">
+                      <h4 class="mt-2">{{user.get_username}}</h4>
+                      <button class="btn btn-light btn-sm mt-2">Update Profile Picture</button>
+                  </div>
+                  <ul class="list-unstyled mt-4 centered-list">
+                      <li class="mb-3 cursor-pointer" onclick="showSection('preferences')">Preferences</li>
+                      <li class="mb-3 cursor-pointer" onclick="logout()">Logout</li>
+                  </ul>
+              </div>
+
+              <div class="right-section p-4 w-100">
+                  <div id="preferencesSection" class="content-section-active">
+
+                      <h4>Preferences</h4>
+                      <div class="preference">
+                        <label for="dog-names">Cuisine Style:
+                          <select name="dog-names" id="dog-names"> 
+                            <option value="rigatoni">American</option> 
+                            <option value="dave">Korean</option> 
+                            <option value="pumpernickel">Italian</option> 
+                            <option value="reeses">Mexican</option> 
+                        </select>
+                        <div>
+                          <label for="Name">Current Zip Code:
+                            <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="10001">
+                          </label>
+                        </div>
+                        <div>
+                          <label for="Name">Location Radius:
+                            <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="5m">
+                          </label>
+                        </div>
+                        <button type="button" class="btn btn-primary">Save Changes</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- <div class="settings-icon" id="settingsIcon">
 
   <i class="fa-solid fa-users-rectangle" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
 </div>
@@ -34,13 +88,9 @@
 
 
 
-<!-- Modal -->
-<!-- Full screen modal -->
-
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
-       <!-- Left Side of Modal, Fixed to those tabs..for now -->
           <div class="left">
             <div class="profile">
               <br>
@@ -77,59 +127,6 @@
             </div>
            
           </div>
-          <!-- End of Left -->
-           <!-- Right Side of the Modal, always changing depending on the tab selected. Right side u see when loading into page-->
-           <div class="right">
-            <h1>Account Settings</h1>
-            <div class="right-text">
-              <label for="Name">Username:
-                <input type="text" id="username" name="username" minlength="3" placeholder="johndoe">
-              </label>
-              <label for="Name">First Name:
-                <input type="text" id="first-name" name="first-name" minlength="3" placeholder="John">
-              </label>
-              <label for="Name">Last Name:
-                <input type="text" id="last-name" name="last-name" minlength="2" placeholder="Doe" >
-              </label>
-              <label for="Name">Email Address:
-                <input type="text" id="email-address" name="email-address" minlength="5" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="johndoe@mail.com">
-              </label>
-            </div>
-            <button type="button" class="btn btn-primary">Save Changes</button>
-            <button type="button" class="btn btn-danger">Delete Account <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
-          </div>
-          <!-- End of Right -->
-          <div class="preferences" >
-            <h1>Preferences</h1>
-            <div class="right-text">
-              <label for="dog-names">Cuisine Style:
-                <select name="dog-names" id="dog-names"> 
-                  <option value="rigatoni">American</option> 
-                  <option value="dave">Korean</option> 
-                  <option value="pumpernickel">Italian</option> 
-                  <option value="reeses">Mexican</option> 
-              </select>
-              </label> 
-              <label for="dog-names">Dietary Prefererance:
-                <select name="dog-names" id="dog-names"> 
-                  <option value="rigatoni">Vegan</option> 
-                  <option value="dave">Vegetarian</option> 
-                  <option value="pumpernickel">Halal</option> 
-                  <option value="reeses">Gluten Free</option> 
-              </select>
-              </label> 
-              <label for="Name">Current Zip Code:
-                <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="12345">
-              </label>
-              <label for="Name">Location Radius :
-                <input type="text" id="zip-code" name="zip-code" minlength="5" placeholder="Will be an eventual slider in miles here">
-              </label>
-              
-              
-            </div>
-            <button type="button" class="btn btn-primary">Save Changes</button>
-            </div>
-            <!-- End of Preferences -->
 
 
 

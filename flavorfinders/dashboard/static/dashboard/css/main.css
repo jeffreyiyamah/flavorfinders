@@ -5,6 +5,66 @@
 /* .mapboxgl-ctrl-logo {
     display: none !important;
 } */
+
+
+/* Settings icon */
+.settings-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(255, 0, 144);
+    background: -webkit-linear-gradient(#ff0090, #1908d3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.settings-icon:hover {
+    background: -webkit-linear-gradient(#1908d3, #ff0090);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Modal Left Section */
+.left-section {
+    width: 25%;
+    background-color: rgb(7, 25, 104);
+    min-height: 100%;
+}
+
+.left-section h4 {
+    font-weight: bold;
+}
+
+.left-section ul li {
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.left-section ul li:hover {
+    text-decoration: underline;
+    color: #00d9ff;
+}
+
+/* Modal Right Section */
+.right-section {
+    background-color: white;
+    width: 75%;
+    overflow-y: auto;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+
+
 .settings-icon {
 position: absolute;
 top: 10px;
@@ -91,7 +151,7 @@ h5{
     cursor: pointer;
     margin-top: 35px;
   }
-.modal-content .right,.preferences{
+.modal-content .right{
     height: auto;
     margin-left: 25%;
     overflow-y: auto;
@@ -100,7 +160,7 @@ h5{
 
 .left img{
     border-radius: 70px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .right{
@@ -135,28 +195,47 @@ h5{
     flex-direction: column;
     justify-content: center;
   }
-  /* Preferences Tab */
-.preferences{
-    margin-top: 10px;
-    width: 100%;
-    font-weight: 400;
-    display: block;
-    overflow-y: auto;
-}
+
 .edit-profile{
     color: black;
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
 }
-.preferences input{
-    display: inline;
-    width: 400px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 7px;
-}
-.preferences label{
-    margin-top: 50px;
+
+.profile-pic {
+    max-width: 100%;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 768px) {
+    .profile-pic {
+        width: 96px;
+        height: 96px;
+    }
+}
+
+
+.centered-list {
+    text-align: center; 
+    list-style: none;
+    padding: 0; 
+    margin: 0;
+}
+
+.centered-list li {
+    cursor: pointer; 
+    text-decoration: none; 
+    font-size: 16px;
+    color: inherit; 
+}
+
+.centered-list li:hover {
+    color: #007bff; 
+    text-decoration: none;
+}

@@ -49,71 +49,81 @@ script.onload = function() {
 
 async function fetchRestaurants() {
   const apiKey = "wFyfphdUEnlygaeBxPyVr4xKChtdLgQG"; // TomTom API key
-  const lat = 40.7295;  // Correct Latitude for NYC
-  const lon = -73.9965; // Correct Longitude for NYC  
-  const radius = 5000; // Search radius in meters
+  const lat = 37.7749;       // Latitude for SF
+  const lon = -122.4194;      // Longitude for SF
+  const radius = 150000;       // Search radius in meters
 
-  const response = await fetch(
-    `https://api.tomtom.com/search/2/categorySearch/restaurant.json?key=${apiKey}&lat=${lat}&lon=${lon}&radius=${radius}`
-  );
-  const data = await response.json();
-  return data.results; // Return the restaurant data
+  const url = `https://api.tomtom.com/search/2/categorySearch/restaurant.json?key=${apiKey}&lat=${lat}&lon=${lon}&radius=${radius}`;
+
+  try {
+    const response = await fetch(url);
+
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Validate that 'results' exists and is an array
+    if (!data.results || !Array.isArray(data.results)) {
+      throw new Error("Invalid data format: 'results' field is missing or not an array.");
+    }
+
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+    return []; // Return an empty array to prevent further errors
+  }
 }
 
-
-async function addMarkersToMap() {
+async function addDynamicMarkers() {
   const restaurants = await fetchRestaurants();
 
+  if (restaurants.length === 0) {
+    console.warn("No restaurants data available to add markers.");
+    return;
+  }
+
   restaurants.forEach((restaurant) => {
-    console.log(restaurant.position); // Debug: Log the position of each restaurant
-    if (restaurant.position && restaurant.position.lon && restaurant.position.lat) {
+    console.log("Adding marker for:", restaurant);
+
+    if (
+      restaurant.position &&
+      typeof restaurant.position.lon === 'number' &&
+      typeof restaurant.position.lat === 'number' &&
+      restaurant.poi &&
+      restaurant.poi.name &&
+      restaurant.address &&
+      restaurant.address.freeformAddress
+    ) {
+      const popup = new mapboxgl.Popup({ offset: 25 })
+        .setHTML(`
+          <h3>${restaurant.poi.name}</h3>
+          <p>${restaurant.address.freeformAddress}</p>
+        `);
+
       new mapboxgl.Marker()
-        .setLngLat([restaurant.position.lon, restaurant.position.lat]) // Set marker coordinates
-        .setPopup(
-          new mapboxgl.Popup().setHTML(`
-            <h3>${restaurant.poi.name || "Unnamed Restaurant"}</h3>
-            <p>${restaurant.address.freeformAddress || "No address available"}</p>
-          `)
-        )
-        .addTo(map); // Add marker to the map
+        .setLngLat([restaurant.position.lon, restaurant.position.lat])
+        .setPopup(popup)
+        .addTo(map);
     } else {
-      console.warn("Invalid position data for restaurant:", restaurant);
+      console.warn("Incomplete data for restaurant:", restaurant);
     }
   });
 }
 
 
-// addMarkersToMap();
-
-
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiamVmZnJleWl5YW1haCIsImEiOiJjbGlveTZjaHkwaWN5M2NwYXpvajJkaTg1In0.koMqCA4ePB63Mbx1umzdlA';
 const map = new mapboxgl.Map({
-    container: 'map',
-    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-    style: 'mapbox://styles/mapbox/streets-v12',
-    center: [-73.9965, 40.7295],
-    zoom: 13
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: [-122.4194, 37.7749],
+  zoom: 13
 });
 
 
 
-// Add the control to the map.
-    map.addControl(
-    new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-    })
-);
-
-map.addControl(search);
-//On click 
-// Ensure this code runs after the map has been initialized
-
-
-
-const marker = new mapboxgl.Marker()
-    .setLngLat([-73.9965, 40.7295])
-    .addTo(map);
-
-
+map.on('load', () => {
+  addDynamicMarkers();
+});
